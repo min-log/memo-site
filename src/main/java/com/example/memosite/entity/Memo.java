@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "tbl_memo")
@@ -21,4 +25,10 @@ public class Memo {
 
     @Column(length = 200,nullable = false)
     private String memoText;
+
+    @CreatedDate
+    private LocalDateTime created_at;
+    @LastModifiedDate
+    private LocalDateTime updated_at;
+
 }

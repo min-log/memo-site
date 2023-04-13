@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -46,8 +47,10 @@ public class MemoRepositoryTest {
     @DisplayName("3. 조회 - getOne")
     @Transactional
     public void test_3(){
-        Long mno = 100L;
-        Memo memo = memoRepository.getOne(mno);
+        Memo mno = new Memo();
+        mno.setMno(100L);
+        mno.setMemoText("하이");
+        Memo memo = memoRepository.getOne(100L);
         System.out.println("==========================");
         System.out.println(memo);
 
