@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Memo</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
 </head>
+<script>
+    function memoSave(){
+            let memoCon = $(".memo_input").val();
+            alert(memoCon)
+        $.ajax({
+            url : "/main",
+            type : "post",
+            data : {
+                "memoText" : memoCon
+            },
+            success: memoList()
+
+        })
+    }
+    function memoList(){
+        let html = '<div> 텍스트</div>';
+
+        $("#memoContent").html(html);
+    }
+$(function (){
+    //
+
+});
+</script>
 <body>
+
+    <H2>
+        Todo List
+    </H2>
+    <div class="memo_add">
+        <form>
+            <input class="memo_input" type="text" placeholder="Todo를 작성해주세요!"/>
+            <a href="javascript:memoSave()">기록하기</a>
+        </form>
+    </div>
+    <div id="memoContent">
+        <ul>
+            <li th:each="list : ${memoList}">
+                <p th:text="${list.getMemoText()}">
+                    내용
+                </p>
+                <p th:text="${list.getCreated_at()}">
+                    날짜
+                </p>
+            </li>
+        </ul>
+    </div>
 
 </body>
 </html>

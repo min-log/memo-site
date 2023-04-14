@@ -13,3 +13,6 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix : .html
